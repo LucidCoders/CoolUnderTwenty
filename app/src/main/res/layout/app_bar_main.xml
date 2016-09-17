@@ -18,18 +18,69 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
             app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp">
+
+            <FrameLayout
+                android:id="@+id/main_search_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/rounded_frame_grey_filled"
+                android:layout_gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:tint="@color/colorPrimary"
+                        android:src="@mipmap/ic_search_white_24dp"/>
+
+                    <TextView
+                        style="@style/TextViewSecondary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        android:text="Search for products"/>
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </FrameLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/main_tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:tabIndicatorColor="@color/Amber500"
+            app:tabTextColor="@color/white55"
+            app:tabSelectedTextColor="@color/white"
+            app:tabMode="scrollable" />
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main"/>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/main_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 </android.support.design.widget.CoordinatorLayout>
