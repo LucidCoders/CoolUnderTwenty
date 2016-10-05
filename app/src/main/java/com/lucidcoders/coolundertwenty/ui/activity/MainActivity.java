@@ -14,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.lucidcoders.coolundertwenty.R;
 import com.lucidcoders.coolundertwenty.network.ApiManager;
@@ -35,13 +37,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        mDrawer.addDrawerListener(toggle);
-        toggle.syncState();
+        ImageView sideMenuIcon = (ImageView) findViewById(R.id.main_side_menu_icon);
+        if (sideMenuIcon != null) {
+            sideMenuIcon.setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (mDrawer.isDrawerOpen(GravityCompat.END)) {
+                                mDrawer.closeDrawer(GravityCompat.END);
+                            } else {
+                                mDrawer.openDrawer(GravityCompat.END);
+                            }
+                        }
+                    }
+            );
+        }
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -51,8 +63,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
-            mDrawer.closeDrawer(GravityCompat.START);
+        if (mDrawer.isDrawerOpen(GravityCompat.END)) {
+            mDrawer.closeDrawer(GravityCompat.END);
         } else {
             super.onBackPressed();
         }
@@ -94,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }
 
-        mDrawer.closeDrawer(GravityCompat.START);
+        mDrawer.closeDrawer(GravityCompat.END);
         return true;
     }
 
