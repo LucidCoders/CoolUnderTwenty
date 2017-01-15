@@ -20,6 +20,9 @@ public class Product {
     @SerializedName("excerpt")
     @Expose
     private String excerpt;
+    @SerializedName("favorite_cnt")
+    @Expose
+    private String favoriteCount;
     @SerializedName("price")
     @Expose
     private String price;
@@ -125,4 +128,11 @@ public class Product {
         this.refUrl = refUrl;
     }
 
+    public String getFavoriteCount() {
+        return favoriteCount;
+    }
+
+    public void setFavoriteCount(String favoriteCount) {
+        this.favoriteCount = favoriteCount;
+    }
 }

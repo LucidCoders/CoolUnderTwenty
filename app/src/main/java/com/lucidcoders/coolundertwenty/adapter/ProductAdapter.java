@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
@@ -85,6 +86,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }
             itemHolder.nameTextView.setText(product.getTitle());
             itemHolder.descriptionTextView.setText(product.getExcerpt());
+            itemHolder.favoriteCountTextView.setText(product.getFavoriteCount());
             String price = "$" + product.getPrice();
             itemHolder.priceTextView.setText(price);
         }
@@ -115,8 +117,9 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         TextView nameTextView;
         TextView descriptionTextView;
         TextView priceTextView;
+        TextView favoriteCountTextView;
         FrameLayout shareLayout;
-        FrameLayout wishlistLayout;
+        LinearLayout wishlistLayout;
 
         public ItemHolder(View itemView) {
             super(itemView);
@@ -125,8 +128,9 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             nameTextView = (TextView) itemView.findViewById(R.id.product_item_name);
             descriptionTextView = (TextView) itemView.findViewById(R.id.product_item_description);
             priceTextView = (TextView) itemView.findViewById(R.id.product_item_price);
+            favoriteCountTextView = (TextView) itemView.findViewById(R.id.product_item_favorite_count);
             shareLayout = (FrameLayout) itemView.findViewById(R.id.product_item_share);
-            wishlistLayout = (FrameLayout) itemView.findViewById(R.id.product_item_wish_list);
+            wishlistLayout = (LinearLayout) itemView.findViewById(R.id.product_item_wish_list);
 
             itemView.setOnClickListener(this);
             shareLayout.setOnClickListener(this);
